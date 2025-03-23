@@ -1,12 +1,12 @@
-#ifndef TIKTAKTOE_H
-#define TIKTAKTOE_H
-
 #include <iostream>
 #include <iomanip>
 #include <sstream>
 using namespace std;
 
-extern const int tableSize = 3, columnLength = tableSize * 4 + 2;
+#ifndef TIKTAKTOE_H
+#define TIKTAKTOE_H
+
+constexpr int tableSize = 3, columnLength = tableSize * 4 + 2;
 enum TableOptions{EMPTY = 0, X, O};
 
 class TikTakToe {

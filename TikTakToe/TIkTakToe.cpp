@@ -1,5 +1,4 @@
 #include "TikTakToe.h"
-extern const int tableSize, columnLength;
 
 TikTakToe::TikTakToe(){
     ClearTable();

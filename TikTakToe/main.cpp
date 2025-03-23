@@ -1,11 +1,8 @@
 #include <iostream>
 #include <iomanip>
-#include <iostream>
 #include <sstream>
 #include "TikTakToe.h"
 using namespace std;
-
-/*_______________________________________________________________*/
 
 int main() {
     TikTakToe Game;
@@ -14,7 +11,3 @@ int main() {
 
     Game.PrintTable();
 }
-
-/*_______________________________________________________________*/
-
-
