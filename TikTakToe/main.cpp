@@ -18,10 +18,6 @@ int main() {
 
     
 
-
-
-    
-
     Game.PrintTable();
     cout << Game.CheckIfWin(X, 2, 2);
 }

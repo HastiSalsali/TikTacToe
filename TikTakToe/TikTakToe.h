@@ -13,15 +13,20 @@ enum TableOptions{EMPTY = 0, X, O};
 class TikTakToe {
 private:
     TableOptions table [tableSize][tableSize];
+    unsigned short int rounds = 0;
     
 public:
     TikTakToe();
     
     void ClearTable();
     void SetSquare (TableOptions fillWith, int row, int column);
+    void NewMove (TableOptions X);
     
     const void PrintTable();
     const bool CheckIfWin(TableOptions player, int row, int column);
+    
+    
+    
 };
 
 #endif

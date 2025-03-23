@@ -91,7 +91,31 @@ const bool TikTakToe::CheckIfWin(TableOptions player, int row, int column){ //FI
 
     return playerWon;
 };
-
+void TikTakToe::NewMove(TableOptions x){
+    int row, column;
+    cout << "Please enter a number between 1 and 3:\n";
+    cout << "-Row: ";
+    cin >> row;
+    while (row < 1 || row > 3 || !cin) {
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "~~~Invalid input, try agian\n"
+        "-Row: ";
+        cin >> row;
+    }
+    cout << "-Column: ";
+    cin >> column;
+    while (column < 1 || column > 3 || !cin) {
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "~~~Invalid input, try agian\n"
+        "-Column: ";
+        cin >> column;
+    }
+    
+    
+    
+}
 /*
  -------------
  | O | X |   |
