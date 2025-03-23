@@ -20,7 +20,7 @@ public:
     
     void ClearTable();
     void SetSquare (TableOptions fillWith, int row, int column);
-    void NewMove (TableOptions X);
+    bool NewMove (TableOptions X);
     
     const void PrintTable();
     const bool CheckIfWin(TableOptions player, int row, int column);

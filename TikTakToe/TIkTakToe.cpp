@@ -91,29 +91,45 @@ const bool TikTakToe::CheckIfWin(TableOptions player, int row, int column){ //FI
 
     return playerWon;
 };
-void TikTakToe::NewMove(TableOptions x){
+bool TikTakToe::NewMove(TableOptions x){
+    bool validMove = true, playerWinStat = false;
     int row, column;
-    cout << "Please enter a number between 1 and 3:\n";
-    cout << "-Row: ";
-    cin >> row;
-    while (row < 1 || row > 3 || !cin) {
-        cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        cout << "~~~Invalid input, try agian\n"
-        "-Row: ";
+    do {
+        cout << "Please enter a number between 1 and 3:\n";
+        cout << "-Row: ";
         cin >> row;
-    }
-    cout << "-Column: ";
-    cin >> column;
-    while (column < 1 || column > 3 || !cin) {
-        cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        cout << "~~~Invalid input, try agian\n"
-        "-Column: ";
+        while (row < 1 || row > 3 || !cin) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "~~~Invalid input, try agian\n"
+            "-Row: ";
+            cin >> row;
+            
+        }
+        cout << "-Column: ";
         cin >> column;
-    }
+        while (column < 1 || column > 3 || !cin) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "~~~Invalid input, try agian\n"
+            "-Column: ";
+            cin >> column;
+        }
+        row = row - 1;
+        column = column-1;
+        if (table[row][column]){
+            validMove = false;
+            cout << "~~~That space is already taken, please choose another one;";
+        }
+        else {
+            validMove = true;
+        }
+    } while (!validMove);
+    SetSquare(x, row, column);
+    PrintTable();
+    playerWinStat = CheckIfWin(x, row, column);
     
-    
+    return playerWinStat;
     
 }
 /*
