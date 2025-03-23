@@ -13,7 +13,7 @@ void TikTakToe::ClearTable(){
 }
 void TikTakToe::SetSquare (TableOptions fillWith, int row, int column){
     if ( row >= 0 && row <= tableSize && column >= 0 && column <= tableSize){
-        table[row - 1][column - 1] = fillWith;
+        table[row][column] = fillWith;
     }
     else {
         cout << "not a valid position in table\n";
@@ -48,7 +48,7 @@ const void TikTakToe::PrintTable(){
 
 }
 
-const bool TikTakToe::CheckIfWin(TableOptions player, int row, int column){
+const bool TikTakToe::CheckIfWin(TableOptions player, int row, int column){ //FIX: can be shortened
     bool playerWon = false, check = true;
         //check collumn:
     for (int i=0; i < tableSize; i++){
@@ -71,7 +71,8 @@ const bool TikTakToe::CheckIfWin(TableOptions player, int row, int column){
     if (row == column){
         check = true;
         for (int i=0; i < tableSize; i++){
-            check = check && table[i][i] == player;
+            if (table[i][i] != player)
+                check = false;
         }
     }
     playerWon = playerWon || check;
@@ -80,7 +81,10 @@ const bool TikTakToe::CheckIfWin(TableOptions player, int row, int column){
     if (row == (tableSize - column)){
         check = true;
         for (int i=0; i < tableSize; i++){
-            check = check && table[i][tableSize - i] == player;
+            for (int i=0; i < tableSize; i++){
+                if (table[i][tableSize - i] != player)
+                    check = false;
+            }
         }
     }
     playerWon = playerWon || check;
