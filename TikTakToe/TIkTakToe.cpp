@@ -11,14 +11,15 @@ void TikTakToe::ClearTable(){
         }
     }
 }
-void TikTakToe::SetSquare (TableOptions player, int row, int column){
+void TikTakToe::SetSquare (TableOptions fillWith, int row, int column){
     if ( row >= 0 && row <= tableSize && column >= 0 && column <= tableSize){
-        table[row - 1][column - 1] = player;
+        table[row - 1][column - 1] = fillWith;
     }
-    //throw exception
-    
+    else {
+        cout << "not a valid position in table\n";
+        throw exception();
+    }
 };
-
 
 const void TikTakToe::PrintTable(){
     for (int row = 0; row < tableSize; row++){
@@ -36,7 +37,8 @@ const void TikTakToe::PrintTable(){
                     cout << "O ";
                     break;
                 default:
-                    //throw exception
+                    cout << "no valid variable in row " << row << " column " <<column << endl;
+                    throw exception();
                     break;
             }
         }
@@ -45,6 +47,47 @@ const void TikTakToe::PrintTable(){
     cout << setw(columnLength) << "\n";
 
 }
+
+const bool TikTakToe::CheckIfWin(TableOptions player, int row, int column){
+    bool playerWon = false, check = true;
+        //check collumn:
+    for (int i=0; i < tableSize; i++){
+        if (table[i][column] != player)
+            check = false;
+    }
+    
+    playerWon = playerWon || check;
+    
+        //check row:
+    check = true;
+    for (int i=0; i < tableSize; i++){
+        if (table[row][i] != player)
+            check = false;
+    }
+    playerWon = playerWon || check;
+    
+    //check diagonal
+    
+    if (row == column){
+        check = true;
+        for (int i=0; i < tableSize; i++){
+            check = check && table[i][i] == player;
+        }
+    }
+    playerWon = playerWon || check;
+    
+    //check antidagonal:
+    if (row == (tableSize - column)){
+        check = true;
+        for (int i=0; i < tableSize; i++){
+            check = check && table[i][tableSize - i] == player;
+        }
+    }
+    playerWon = playerWon || check;
+
+    return playerWon;
+};
+
 /*
  -------------
  | O | X |   |
